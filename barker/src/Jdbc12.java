@@ -2,8 +2,8 @@ import java.sql.*;
 
 public class Jdbc12 {
 	public static void main(String args[]) {
-		String userName = null;
-		String password = null;
+		String userName = "root";
+		String password = "forDemacia!";
 		System.out.println("Copyright 2004, R.G.Baldwin");
 		try {
 			Statement stmt;

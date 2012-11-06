@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+import java.swing.*;
 /**
  * @author Colin Mackey and David Justis 
  * As of right now, this is a shell of the
@@ -37,6 +37,15 @@ public class barkerMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		try {
+			// Set System L&F
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (UnsupportedLookAndFeelException e) {
+			// handle exception
+		}
+
+		new SwingApplication(); // Create and show the GUI
 
 	}
 

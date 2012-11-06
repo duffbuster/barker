@@ -1,18 +1,20 @@
 import java.sql.*;
-import javax.sql.*;
+//import javax.sql.*;
 
 public class jdbcdemo {
 
 	public static void main(String args[]) {
 		String dbtime;
-		String dbUrl = "jdbc:mysql://your.database.domain/yourDBname";
-		String dbClass = "com.mysql.jdbc.Driver";
-		String query = "Select * FROM users";
+		String userName = "root";
+		String password = "forDemacia!";
+		String dbUrl = "jdbc:mysql://localhost:3306/test";
+		//String dbClass = "com.mysql.jdbc.Driver";
+		String query = "Select * FROM test";
 
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection(dbUrl);
+			Connection con = DriverManager.getConnection(dbUrl, userName, password);
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 

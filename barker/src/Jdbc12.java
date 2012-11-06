@@ -14,7 +14,7 @@ public class Jdbc12 {
 			// Define URL of database server for
 			// database named mysql on the localhost
 			// with the default port number 3306.
-			String url = "jdbc:mysql://localhost:3306/test";
+			String url = "jdbc:mysql://192.168.56.1:3306/test";
 
 			// Get a connection to the database for a
 			// user named root with a blank password.

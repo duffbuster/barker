@@ -1,7 +1,9 @@
+import javax.swing.*;
+
 /**
  * 
  */
-import java.swing.*;
+
 /**
  * @author Colin Mackey and David Justis 
  * As of right now, this is a shell of the
@@ -35,8 +37,11 @@ public class barkerMain {
 
 	/**
 	 * @param args
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		try {
 			// Set System L&F
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -45,7 +50,7 @@ public class barkerMain {
 			// handle exception
 		}
 
-		new SwingApplication(); // Create and show the GUI
+		//new SwingApplication(); // Create and show the GUI
 
 	}
 

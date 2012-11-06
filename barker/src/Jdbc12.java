@@ -2,6 +2,8 @@ import java.sql.*;
 
 public class Jdbc12 {
 	public static void main(String args[]) {
+		String userName = null;
+		String password = null;
 		System.out.println("Copyright 2004, R.G.Baldwin");
 		try {
 			Statement stmt;
@@ -18,7 +20,7 @@ public class Jdbc12 {
 			// user named root with a blank password.
 			// This user is the default administrator
 			// having full privileges to do anything.
-			Connection con = DriverManager.getConnection(url, "root", "forDemacia!");
+			Connection con = DriverManager.getConnection(url, userName, password);
 			System.out.println("Connection open");
 
 			

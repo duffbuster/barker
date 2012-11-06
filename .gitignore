@@ -5,6 +5,7 @@
 *.war
 *.ear
 *.pydevproject
+
 .project
 .metadata
 bin/**

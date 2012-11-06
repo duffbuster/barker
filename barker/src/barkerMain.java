@@ -3,9 +3,10 @@
  */
 
 /**
- * @author Colin Mackey and David Justis
+ * @author Colin Mackey and David Justis 
+ * As of right now, this is a shell of the
+ *         stuff to come
  * 
- *
  */
 public class barkerMain {
 
@@ -13,15 +14,29 @@ public class barkerMain {
 	 * Constructor
 	 */
 	public barkerMain() {
-		
+
 		super();
+	}
+
+	/**
+	 * GUI initialization method
+	 */
+	public void initGui() {
+
+	}
+
+	/**
+	 * method for the logic
+	 */
+	public void logic() {
+		// name can change
+		// there's a loop in here for getting pings and storing them in a queue
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
 
 	}
 

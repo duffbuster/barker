@@ -10,21 +10,26 @@ import javax.swing.*;
  *         stuff to come
  * 
  */
-public class barkerMain {
+public class barkerMain extends JFrame {
 
+	JPanel userPanel;
 	/**
 	 * Constructor
 	 */
 	public barkerMain() {
-
 		super();
+		setMaximumSize(new Dimension(500,500));
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		initGui();
 	}
 
 	/**
 	 * GUI initialization method
 	 */
 	public void initGui() {
-
+		
+		userPanel = new JPanel();
 	}
 
 	/**

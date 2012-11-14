@@ -49,3 +49,5 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 /Barker/nbproject/private/
+/Barker/dist/
+/Barker/build/

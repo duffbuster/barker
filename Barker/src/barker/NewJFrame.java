@@ -4,6 +4,12 @@
  */
 package barker;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author cmackey
@@ -27,39 +33,89 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
+        jDialog1 = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jScrollBar1 = new javax.swing.JScrollBar();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        textField = new javax.swing.JTextField();
+        sendButton = new javax.swing.JButton();
         jScrollBar2 = new javax.swing.JScrollBar();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        fileMenu = new javax.swing.JMenu();
+        logout = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
+        helpMenu = new javax.swing.JMenu();
+        help = new javax.swing.JMenuItem();
+
+        jDialog1.setTitle("Help");
+        jDialog1.setAlwaysOnTop(true);
+        jDialog1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jDialog1.setIconImage(null);
+
+        jTextPane1.setEditable(false);
+        jTextPane1.setText("Help!");
+        jScrollPane2.setViewportView(jTextPane1);
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField3.setText("jTextField3");
+        textField.setToolTipText("Enter Bark Here!");
 
-        jButton1.setText("jButton1");
+        sendButton.setText("Bark!");
+        sendButton.setToolTipText("Send Bark!");
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
 
         jMenuBar1.setBackground(new java.awt.Color(153, 204, 0));
         jMenuBar1.setAutoscrolls(true);
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jMenu1.setText("File");
+        fileMenu.setText("File");
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        logout.setText("Logout");
+        logout.setToolTipText("");
+        fileMenu.add(logout);
 
-        jMenuBar1.add(jMenu1);
+        exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exit);
 
-        jMenu2.setText("Edit");
+        jMenuBar1.add(fileMenu);
 
-        jMenu3.setText("jMenu3");
-        jMenu2.add(jMenu3);
+        helpMenu.setText("Help");
 
-        jMenuBar1.add(jMenu2);
+        help.setText("Help!");
+        help.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpActionPerformed(evt);
+            }
+        });
+        helpMenu.add(help);
+
+        jMenuBar1.add(helpMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -70,36 +126,48 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(113, 113, 113)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)))
+                                .addComponent(sendButton)
+                                .addGap(0, 552, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollBar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(7, 7, 7))
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(textField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sendButton)))
+                .addGap(2, 2, 2))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void helpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_helpActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,15 +204,19 @@ public class NewJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem exit;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuItem help;
+    private javax.swing.JMenu helpMenu;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollBar jScrollBar2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JMenuItem logout;
+    private javax.swing.JButton sendButton;
+    private javax.swing.JTextField textField;
     // End of variables declaration//GEN-END:variables
 }

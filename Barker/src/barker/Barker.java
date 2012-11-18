@@ -19,6 +19,8 @@ public class Barker extends javax.swing.JFrame {
     public Barker() {
         initComponents();
     }
+    
+    static connect connection = new connect("root", "forDemacia!");
 
     private void initComponents() {
 
@@ -86,6 +88,7 @@ public class Barker extends javax.swing.JFrame {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        connection.startConnection("root", "forDemacia!");
 
         /* Set the System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

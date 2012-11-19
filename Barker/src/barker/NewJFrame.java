@@ -106,6 +106,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jMenuBar1.add(fileMenu);
 
         helpMenu.setText("Help");
+        helpMenu.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                helpMenuMenuSelected(evt);
+            }
+        });
 
         help.setText("Help!");
         help.addActionListener(new java.awt.event.ActionListener() {
@@ -168,6 +177,11 @@ public class NewJFrame extends javax.swing.JFrame {
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sendButtonActionPerformed
+
+    private void helpMenuMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_helpMenuMenuSelected
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_helpMenuMenuSelected
 
     /**
      * @param args the command line arguments

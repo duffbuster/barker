@@ -11,11 +11,7 @@ import java.sql.*;
  */
 public class connect {
 
-    public connect(/*String username, String password*/) {
-        // change this. only need to enter username and password when caling startConnection
-        //this.username = username;
-        //this.password = password;
-
+    public connect() {
     }
 
     public void startConnection(String username, String password) {

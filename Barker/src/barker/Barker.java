@@ -19,8 +19,7 @@ public class Barker extends javax.swing.JFrame {
     public Barker() {
         initComponents();
     }
-    
-    static connect connection = new connect(/*"root", "forDemacia!"*/);
+    static connect connection = new connect();
 
     private void initComponents() {
 
@@ -88,6 +87,8 @@ public class Barker extends javax.swing.JFrame {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        // TODO get username and password information from Login screen text field
         connection.startConnection("root", "forDemacia!");
 
         /* Set the System look and feel */

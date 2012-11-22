@@ -20,7 +20,7 @@ public class Barker extends javax.swing.JFrame {
         initComponents();
     }
     
-    static connect connection = new connect("root", "forDemacia!");
+    static connect connection = new connect(/*"root", "forDemacia!"*/);
 
     private void initComponents() {
 

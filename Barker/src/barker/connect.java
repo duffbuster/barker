@@ -19,7 +19,7 @@ public class connect {
         Statement stmt = null;
 
         try {
-            Class.forName("com.myswl.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, username, password);

@@ -86,10 +86,21 @@ public class Barker extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        connection.startConnection(
+                "root", "forDemacia!");
+        queryBuilder builder = new queryBuilder();
         // TODO code application logic here
 
-        // TODO get username and password information from Login screen text field
-        connection.startConnection("root", "forDemacia!");
+        builder.setTable("users");
+       // builder.addColumnAndData("username", "'peter'");
+       // builder.addColumnAndData("password", "'wazzup'");
+
+
+
+        String sql = SQLDirector.buildSQL(builder);
+        if (sql != null) {
+            connection.update(sql);
+        }
 
         /* Set the System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -110,11 +121,12 @@ public class Barker extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(
+                new Runnable() {
+                    public void run() {
+                        new NewJFrame().setVisible(true);
+                    }
+                });
     }
     // Variables declaration - do not modify
     private javax.swing.JMenu jMenu1;

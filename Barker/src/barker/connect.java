@@ -15,8 +15,7 @@ public class connect {
     }
 
     public void startConnection(String username, String password) {
-        Connection conn = null;
-        Statement stmt = null;
+
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -24,31 +23,42 @@ public class connect {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, username, password);
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             // used to close resources
-            try {
-                if (stmt != null) {
-                    stmt.close();
-                }
-            } catch (SQLException e) {
+            /**
+             * try { if (conn != null) { conn.close(); } } catch (SQLException
+             * e) { e.printStackTrace();
             }
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+             */
         }
     }
-    // database credentials
-    protected static String username;
-    protected static String password;
+
+    /**
+     * Class to update the database
+     *
+     * @param query an SQL query to execute
+     */
+    public void update(String query) {
+        Statement stmt = null;
+        ResultSet rs = null;
+        int updateQuery = 0;
+
+        try {
+            if (query != null) {
+                stmt = conn.createStatement();
+                updateQuery = stmt.executeUpdate(query);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private Connection conn = null;
     // jdbc driver and database url
-    private static final String JDCB_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/EMP";
+    private static final String DB_URL = "jdbc:mysql://localhost/barker";
 }

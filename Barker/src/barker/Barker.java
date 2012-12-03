@@ -19,6 +19,7 @@ public class Barker extends javax.swing.JFrame {
     public Barker() {
         initComponents();
     }
+    static connect connection = new connect();
 
     private void initComponents() {
 
@@ -85,7 +86,33 @@ public class Barker extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        connection.startConnection(
+                "root", "forDemacia!");
         // TODO code application logic here
+
+
+        // for the login, need only username
+        // 
+        String password = connection.getPassword("duffbuster");
+        System.out.println(password);
+        
+        
+        //connection.addFriend("duffbuster", "bob");
+        /**String[] friends = connection.getFriends("duffbuster");
+        for (int i = 0; i < friends.length; i++) {
+            if (friends[i] != null) {
+                System.out.println(friends[i]);
+            }
+
+        }*/
+        //connection.sendBark("djustis", "This is a #second test #bark @duffbuster");
+        //connection.changePassword("duffbuster", "hello", "goodbye");
+        // connection.newUser("bob", "crazy");
+        //connection.getFriendsLastBarks("duffbuster");
+        //System.out.println(barks[1][0]);
+        
+        
+
 
         /* Set the System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -106,11 +133,12 @@ public class Barker extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(
+                new Runnable() {
+                    public void run() {
+                        new NewJFrame().setVisible(true);
+                    }
+                });
     }
     // Variables declaration - do not modify
     private javax.swing.JMenu jMenu1;

@@ -93,7 +93,22 @@ public class Barker extends javax.swing.JFrame {
 
         // for the login, need only username
         // 
-        connection.update("duffbuster");
+        String password = connection.getPassword("duffbuster");
+        System.out.println(password);
+        
+        
+        //connection.addFriend("duffbuster", "bob");
+        String[] friends = connection.getFriends("duffbuster");
+        for (int i = 0; i < friends.length; i++) {
+            if (friends[i] != null) {
+                System.out.println(friends[i]);
+            }
+
+        }
+        //connection.changePassword("duffbuster", "hello", "goodbye");
+        // connection.newUser("bob", "crazy");
+        
+
 
         /* Set the System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -32,8 +32,7 @@ public class connect {
             // used to close resources
             /**
              * try { if (conn != null) { conn.close(); } } catch (SQLException
-             * e) { e.printStackTrace();
-            }
+             * e) { e.printStackTrace(); }
              */
         }
     }
@@ -43,15 +42,21 @@ public class connect {
      *
      * @param query an SQL query to execute
      */
-    public void update(String query) {
+    public void update(String username) {
         Statement stmt = null;
         ResultSet rs = null;
-        int updateQuery = 0;
-
         try {
-            if (query != null) {
-                stmt = conn.createStatement();
-                updateQuery = stmt.executeUpdate(query);
+
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT username,password FROM barker.users WHERE username = '" + username + "';");
+            System.out.println("Got results:");
+
+            while (rs.next()) { // process results one row at a time
+                String name = rs.getString("username");
+                String pass = rs.getString("password");
+
+                System.out.println("Username = " + name);
+                System.out.println("Password = " + pass);
             }
 
         } catch (SQLException e) {

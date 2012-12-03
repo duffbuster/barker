@@ -88,19 +88,12 @@ public class Barker extends javax.swing.JFrame {
     public static void main(String[] args) {
         connection.startConnection(
                 "root", "forDemacia!");
-        queryBuilder builder = new queryBuilder();
         // TODO code application logic here
 
-        builder.setTable("users");
-       // builder.addColumnAndData("username", "'peter'");
-       // builder.addColumnAndData("password", "'wazzup'");
 
-
-
-        String sql = SQLDirector.buildSQL(builder);
-        if (sql != null) {
-            connection.update(sql);
-        }
+        // for the login, need only username
+        // 
+        connection.update("duffbuster");
 
         /* Set the System look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author cmackey
+ * @author cmackey and djustis
  */
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -21,6 +21,7 @@ public class NewJFrame extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public NewJFrame() {
+
         initComponents();
     }
 
@@ -71,17 +72,19 @@ public class NewJFrame extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         help = new javax.swing.JMenuItem();
 
-        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         jFrame1.setTitle("LoginFrame");
-        jFrame1.setFocusCycleRoot(false);
+        jFrame1.setAutoRequestFocus(false);
+        jFrame1.setFocusableWindowState(false);
         jFrame1.setName("LoginFrame"); // NOI18N
+        jFrame1.setType(java.awt.Window.Type.POPUP);
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jButton2, org.jdesktop.beansbinding.ELProperty.create("${selected}"), jFrame1, org.jdesktop.beansbinding.BeanProperty.create("defaultCloseOperation"));
         bindingGroup.addBinding(binding);
 
-        jFrame1.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jFrame1FocusGained(evt);
+        jFrame1.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                jFrame1WindowOpened(evt);
             }
         });
 
@@ -211,11 +214,10 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 255));
         setResizable(false);
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jButton2, org.jdesktop.beansbinding.ELProperty.create("${selected}"), this, org.jdesktop.beansbinding.BeanProperty.create("focusableWindowState"), "");
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, exit, org.jdesktop.beansbinding.ELProperty.create("${selected}"), this, org.jdesktop.beansbinding.BeanProperty.create("defaultCloseOperation"));
         bindingGroup.addBinding(binding);
 
         textField.setToolTipText("Enter Bark Here!");
@@ -393,10 +395,10 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jFrame1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFrame1FocusGained
+    private void jFrame1WindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_jFrame1WindowOpened
         // TODO add your handling code here:
         jFrame1.setVisible(true);
-    }//GEN-LAST:event_jFrame1FocusGained
+    }//GEN-LAST:event_jFrame1WindowOpened
 
     /**
      * @param args the command line arguments
@@ -428,7 +430,7 @@ public class NewJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new NewJFrame();
             }
         });
     }

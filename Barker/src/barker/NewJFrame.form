@@ -4,16 +4,20 @@
   <NonVisualComponents>
     <Container class="javax.swing.JFrame" name="jFrame1">
       <Properties>
-        <Property name="defaultCloseOperation" type="int" value="1"/>
+        <Property name="defaultCloseOperation" type="int" value="3"/>
         <Property name="title" type="java.lang.String" value="LoginFrame"/>
-        <Property name="focusCycleRoot" type="boolean" value="false"/>
+        <Property name="autoRequestFocus" type="boolean" value="false"/>
+        <Property name="focusableWindowState" type="boolean" value="false"/>
         <Property name="name" type="java.lang.String" value="LoginFrame" noResource="true"/>
+        <Property name="type" type="java.awt.Window$Type" editor="org.netbeans.modules.form.editors.EnumEditor">
+          <Value id="POPUP"/>
+        </Property>
       </Properties>
       <BindingProperties>
         <BindingProperty name="defaultCloseOperation" source="jButton2" sourcePath="${selected}" target="jFrame1" targetPath="defaultCloseOperation" updateStrategy="0" immediately="false"/>
       </BindingProperties>
       <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jFrame1FocusGained"/>
+        <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="jFrame1WindowOpened"/>
       </Events>
 
       <Layout>
@@ -282,16 +286,13 @@
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="0" red="0" type="rgb"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <BindingProperties>
-    <BindingProperty name="focusableWindowState" source="jButton2" sourcePath="${selected}" target="Form" targetPath="focusableWindowState" updateStrategy="0" immediately="false">
-      <Property name="name" type="java.lang.String" value=""/>
-    </BindingProperty>
+    <BindingProperty name="defaultCloseOperation" source="exit" sourcePath="${selected}" target="Form" targetPath="defaultCloseOperation" updateStrategy="0" immediately="false"/>
   </BindingProperties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>

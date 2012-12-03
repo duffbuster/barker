@@ -220,10 +220,6 @@ public class connect {
         }
     }
 
-    public String[] getBarks() {
-        return null;
-    }
-
     /**
      * gets the latest bark
      *
@@ -250,34 +246,6 @@ public class connect {
         }
     }
 
-    public String[][] getFriendsLastBarks(String username) {
-        String[] friends = new String[100];
-        String[][] barks = new String[5][50];
-        friends = getFriends(username);
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            stmt = conn.createStatement();
-            for (int i = 0; i < friends.length; i++) {
-                if (friends[i] != null) {
-                    rs = stmt.executeQuery("SELECT * FROM barker.barks WHERE username = '" + friends[i] + "';");
-                    
-                }   
-            }
-            while (rs.next()) {
-                System.out.println("adding");
-                barks[0][0] = rs.getString("username");
-                System.out.println(barks[0][0]);
-                barks[1][0] = rs.getString("bark");
-            }
-            
-            
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
     private Connection conn = null;
     // jdbc driver and database url
     private static final String DB_URL = "jdbc:mysql://localhost/barker";

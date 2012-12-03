@@ -98,15 +98,19 @@ public class Barker extends javax.swing.JFrame {
         
         
         //connection.addFriend("duffbuster", "bob");
-        String[] friends = connection.getFriends("duffbuster");
+        /**String[] friends = connection.getFriends("duffbuster");
         for (int i = 0; i < friends.length; i++) {
             if (friends[i] != null) {
                 System.out.println(friends[i]);
             }
 
-        }
+        }*/
+        //connection.sendBark("djustis", "This is a #second test #bark @duffbuster");
         //connection.changePassword("duffbuster", "hello", "goodbye");
         // connection.newUser("bob", "crazy");
+        connection.getFriendsLastBarks("duffbuster");
+        //System.out.println(barks[1][0]);
+        
         
 
 

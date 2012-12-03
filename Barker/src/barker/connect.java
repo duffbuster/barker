@@ -72,7 +72,7 @@ public class connect {
             while (rs.next()) {
                 String pass = rs.getString("password");
                 if (pass.equals(oldPassword)) {
-                    stmt.executeUpdate("UPDATE users SET password = '" + newPassword + "' WHERE username = '" + username + "';");
+                    stmt.executeUpdate("UPDATE barker.users SET password = '" + newPassword + "' WHERE username = '" + username + "';");
                     return true;
                 } else {
                     return false;
@@ -95,9 +95,12 @@ public class connect {
      */
     public boolean newUser(String username, String password) {
         Statement stmt = null;
+        Statement tbl = null;
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO users (username,password) VALUES ('" + username + "','" + password + "');");
+            stmt.executeUpdate("INSERT INTO barker.users (username,password) VALUES ('" + username + "','" + password + "');");
+            tbl = conn.createStatement();
+            tbl.executeUpdate("CREATE TABLE " + username + " (friends VARCHAR(20))");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -117,7 +120,7 @@ public class connect {
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
-            stmt.executeUpdate("INSERT INTO duffbuster (friends) VALUES ('" + friend + "');");
+            stmt.executeUpdate("INSERT INTO barker." + username + " (friends) VALUES ('" + friend + "');");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -149,7 +152,131 @@ public class connect {
             e.printStackTrace();
             return null;
         }
-        //return null;
+    }
+
+    /**
+     * Sends a bark to the server with separated tags and mentions
+     *
+     * @param username name of the poster
+     * @param bark the bark to be posted
+     * @return true if successful, false if not
+     */
+    public boolean sendBark(String username, String abark) {
+        String bark = abark.concat(" ");
+        Statement stmt = null;
+        StringBuilder tags = new StringBuilder();
+        StringBuilder mentions = new StringBuilder();
+        try {
+            stmt = conn.createStatement();
+            // seperate out the tags; 3 max
+            if (bark.indexOf('#') > -1) {
+                int index = bark.indexOf('#');
+                int end = bark.indexOf(" ", index + 1);
+                String tag = bark.substring(index + 1, end);
+                tags.append(tag);
+                if (bark.indexOf('#', end) > -1) {
+                    tags.append(",");
+                    int indexb = bark.indexOf('#', end);
+                    int endb = bark.indexOf(" ", indexb);
+                    String tagb = bark.substring(indexb + 1, endb);
+                    tags.append(tagb);
+                    if (bark.indexOf('#', endb) > -1) {
+                        tags.append(",");
+                        int indexc = bark.indexOf('#', endb);
+                        int endc = bark.indexOf(" ", indexc);
+                        String tagc = bark.substring(indexc + 1, endc);
+                        tags.append(tagc);
+                    }
+                }
+            }
+            // seperate out the @ mentions; 3 max;
+            if (bark.indexOf('@') > -1) {
+                int mindex = bark.indexOf('@');
+                int mend = bark.indexOf(" ", mindex + 1);
+                String ment = bark.substring(mindex + 1, mend);
+                mentions.append(ment);
+                if (bark.indexOf('@', mend) > -1) {
+                    mentions.append(",");
+                    int mindexb = bark.indexOf('@', mend);
+                    int mendb = bark.indexOf(" ", mindexb);
+                    String mentb = bark.substring(mindexb + 1, mendb);
+                    mentions.append(mentb);
+                    if (bark.indexOf('@', mendb) > -1) {
+                        mentions.append(",");
+                        int mindexc = bark.indexOf('@', mendb);
+                        int mendc = bark.indexOf(" ", mindexc);
+                        String mentc = bark.substring(mindexc + 1, mendc);
+                        mentions.append(mentc);
+                    }
+                }
+            }
+            String tagString = tags.toString();
+            String mentionString = mentions.toString();
+            stmt.executeUpdate("INSERT INTO barker.barks (username,bark,tags,mentions) VALUES ('" + username + "','" + bark + "','" + tagString + "','" + mentionString + "');");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public String[] getBarks() {
+        return null;
+    }
+
+    /**
+     * gets the latest bark
+     *
+     * @return array bark, containing relevant info for latest bark
+     */
+    public String[] getLastBark() {
+        Statement stmt = null;
+        ResultSet rs = null;
+        String[] bark = new String[5];
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT * FROM barker.barks;");
+            while (rs.next()) {
+                bark[0] = rs.getString("username");
+                bark[1] = rs.getString("bark");
+                bark[2] = rs.getString("time");
+                bark[3] = rs.getString("tags");
+                bark[4] = rs.getString("mentions");
+            }
+            return bark;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String[][] getFriendsLastBarks(String username) {
+        String[] friends = new String[100];
+        String[][] barks = new String[5][50];
+        friends = getFriends(username);
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = conn.createStatement();
+            for (int i = 0; i < friends.length; i++) {
+                if (friends[i] != null) {
+                    rs = stmt.executeQuery("SELECT * FROM barker.barks WHERE username = '" + friends[i] + "';");
+                    
+                }   
+            }
+            while (rs.next()) {
+                System.out.println("adding");
+                barks[0][0] = rs.getString("username");
+                System.out.println(barks[0][0]);
+                barks[1][0] = rs.getString("bark");
+            }
+            
+            
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     private Connection conn = null;
     // jdbc driver and database url
